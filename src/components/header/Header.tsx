@@ -27,7 +27,7 @@ const HeaderStyled = styled.div`
 `
 
 export const Header: React.FC = () => {
-    const traduction = useTranslations('Header');
+    const translation = useTranslations('Header');
     const { data: session } = useSession();
 
     return (
@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
         {session?.user ? (
             <HeaderStyled>
                 <h1>iProduct</h1>
-                <LogoutButton onClick={() => signOut()} icon={<LogoutIcon />} label={traduction('logout')}></LogoutButton>
+                <LogoutButton onClick={() => signOut()} icon={<LogoutIcon />} label={translation('logout')}></LogoutButton>
             </HeaderStyled>
         ) : (
             <HeaderStyled>

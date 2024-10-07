@@ -8,6 +8,7 @@
     "SignUpView": {
         "title": "Registrarse",
         "username": "Nombre de Usuario",
+        "name": "Username",
         "password": "Contraseña",
         "email": "Correo Electrónico",
         "phone": "Teléfono",
