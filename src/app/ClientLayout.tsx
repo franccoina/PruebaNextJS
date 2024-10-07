@@ -5,6 +5,13 @@ import { useSession } from 'next-auth/react';
 import { Footer } from "@/components/footer/Footer";
 import { Sidebar } from "@/components/sidebar/SidebarUser";
 
+const PagesOfflineContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+`
+
 const PagesUserContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,11 +47,10 @@ export default function ClientLayout({
             ) : (
                 <>
                     <Header />
-                    <Sidebar />
-                    <PagesUserContainer>
+                    <PagesOfflineContainer>
                         {children}
                         <Footer />
-                    </PagesUserContainer>
+                    </PagesOfflineContainer>
                 </>
             )}
         </PagesContainer>
