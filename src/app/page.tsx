@@ -1,7 +1,6 @@
 "use client"
 import styled from "styled-components";
 import { useTranslations } from "next-intl";
-import StyledLink from "@/components/UI/Link/Link";
 import { Switchbar } from "@/components/switchbar/SwitchbarAuth";
 
 const Div = styled.div`
@@ -19,10 +18,6 @@ const HomePage = () => {
     <Switchbar />
     <Div>
       <h1>{translation("title")}</h1>
-      <br/>
-      <div>
-        <StyledLink href="/login" label="Authenticate yourself"></StyledLink>
-      </div>
     </Div></>
   );
 };
