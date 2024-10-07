@@ -9,7 +9,6 @@ const navUserLinks = [
     { name: "Profile", href: "/profile" }
 ]
 
-// Styled components
 const SidebarContainer = styled.div`
     z-index: 10;
     position: fixed;
@@ -48,7 +47,6 @@ const LinksContainer = styled.div`
     }
 `;
 
-// Sidebar component
 export const Sidebar: React.FC = () => {
     return (
         <SidebarContainer>
