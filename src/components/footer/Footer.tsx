@@ -13,12 +13,6 @@ const FooterStyled = styled.footer`
   align-items: center;
   margin-top: 50px;
 
-  article {
-    display: flex;
-    gap: 20px;
-    text-align: center;
-  }
-
   @media (max-width: 679px) {
     article {
       display: flex;
@@ -64,17 +58,6 @@ const FooterNavItem = styled.li`
 export const Footer: React.FC = () => {
   return (
     <FooterStyled>
-      <article>
-        <FooterNavItem>
-          <StyledNavLink href="/" label="HOME" />
-        </FooterNavItem>
-        <FooterNavItem>
-          <StyledNavLink href="/products" label="PRODUCTS" />
-        </FooterNavItem>
-        <FooterNavItem>
-          <StyledNavLink href="/profile" label="ABOUT" />
-        </FooterNavItem>
-      </article>
       <CopyrightContainer>
         <p>
           © {new Date().getFullYear()} iProduct, Inc. Todos los derechos reservados.
