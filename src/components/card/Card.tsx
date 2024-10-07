@@ -3,6 +3,11 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Button from '../UI/Button/Button';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from '@/redux/slices/cartSlice';
+import { addFavorite, removeFavorite } from '../../redux/slices/favoriteSlice';
+import { RootState, AppDispatch } from '../../redux/store';
+import { IProduct } from '@/types/productInterface';
 
 const CardContainer = styled.div`
   border: 1px solid #e2e2e2;
@@ -84,34 +89,43 @@ export const FavoriteIcon = styled.div`
 
 const Card: React.FC<ICardProps> = ({ product }) => {
   const router = useRouter();
+  const dispatch: AppDispatch = useDispatch();
+
+  const isFavorite = useSelector((state: RootState) => 
+      state.favorites.items.some((item: IProduct) => item.id === product.id)
+  );
 
   const handleAddToCart = () => {
-    console.log("add to Cart")
-  };
-
-  const handleFavorite = () => {
-    console.log("add to Favorites")
+      dispatch(addItem(product));
   };
 
   const handleViewDetails = () => {
-    router.push(`/products/${product.id}`);
+      router.push(`/products/${product.id}`);
+  };
+
+  const handleAddToFavorites = () => {
+      if (isFavorite) {
+          dispatch(removeFavorite(product.id));
+      } else {
+          dispatch(addFavorite(product));
+      }
   };
 
   return (
-    <CardContainer>
-      <ProductImage src={product.image} alt={product.title} />
-      <InfoContainer>
-        <ProductTitle>{product.title}</ProductTitle>
-        <ProductPrice>${product.price}</ProductPrice>
-        <ButtonContainer>
-          <Button onClick={handleAddToCart} label="ADD" />
-          <Button onClick={handleViewDetails} label="DETAILS"/>
-          <FavoriteIcon onClick={handleFavorite}>
-            {<AiFillStar />}
-          </FavoriteIcon>
-        </ButtonContainer>
-      </InfoContainer>
-    </CardContainer>
+      <CardContainer>
+          <ProductImage src={product.image} alt={product.title} />
+          <InfoContainer>
+              <ProductTitle>{product.title}</ProductTitle>
+              <ProductPrice>${product.price}</ProductPrice>
+              <ButtonContainer>
+                  <Button onClick={handleAddToCart} label="ADD" />
+                  <Button onClick={handleViewDetails} label="DETAILS"/>
+                  <FavoriteIcon onClick={handleAddToFavorites}>
+                      {isFavorite ? <AiFillStar color="#ffcc00" /> : <AiOutlineStar color="#ffcc00" />}
+                  </FavoriteIcon>
+              </ButtonContainer>
+          </InfoContainer>
+      </CardContainer>
   );
 };
 

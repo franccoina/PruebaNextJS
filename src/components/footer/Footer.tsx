@@ -3,7 +3,6 @@ import styled from "styled-components";
 import React from "react";
 import StyledNavLink from "../UI/Link/Link";
 
-// Estilos para el footer
 const FooterStyled = styled.footer`
   position: relative;
   bottom: 0;
