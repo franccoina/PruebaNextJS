@@ -31,16 +31,17 @@ export const Header: React.FC = () => {
     const { data: session } = useSession();
 
     return (
-        <HeaderStyled>
-            {session?.user ? (
-                <>
-                    <h1>iProduct</h1>
-                    <LogoutButton onClick={() => signOut()} icon={<LogoutIcon />} label={traduction('logout')}></LogoutButton>
-                </>
-            ) : (
-                    <h1>iProduct</h1>
-            )}
-
-        </HeaderStyled>
+    <>
+        {session?.user ? (
+            <HeaderStyled>
+                <h1>iProduct</h1>
+                <LogoutButton onClick={() => signOut()} icon={<LogoutIcon />} label={traduction('logout')}></LogoutButton>
+            </HeaderStyled>
+        ) : (
+            <HeaderStyled>
+                <h1>iProduct</h1>
+            </HeaderStyled>
+        )}
+    </>
     );
 };

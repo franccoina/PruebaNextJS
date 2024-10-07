@@ -3,17 +3,17 @@ import { IButtonProps } from "@/types/IButton";
 
 const ButtonStyle = styled.button`
     border: 1px solid #5555;
-    border-radius:1rem;
-    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    padding: 10px 20px;
     background-color: white;
     margin: 0;
     color: black;
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     width: 50%;
 
     &:hover {
-        background-color: black;
+        background-color: #115d57;
         color: white;
     }
 `
