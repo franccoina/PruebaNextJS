@@ -8,10 +8,7 @@ const HomePage = () => {
     <div>
       <h1>{translation("title")}</h1>
       <div>
-        <StyledLink href="/profile" label="Profile"></StyledLink><br />
-        <StyledLink href="/products" label="Products"></StyledLink><br />
-        <StyledLink href="/signup" label="Sign Up"></StyledLink><br />
-        <StyledLink href="/login" label="Log In"></StyledLink><br />
+        <StyledLink href="/login" label="Authenticate yourself"></StyledLink><br />
       </div>
     </div>
   );
