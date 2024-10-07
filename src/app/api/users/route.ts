@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import { IResponseCreateUser, IUserRegistered } from '../../../types/userInterface';
 
 export async function createUser(userData: IUserRegistered): Promise<IResponseCreateUser> {

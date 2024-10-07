@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { IProduct } from '../../../../types/productInterface';
-import { IResponse } from '../../../../types/productInterface'; 
+import { IProduct , IResponse} from '../../../../types/productInterface';
 
 export async function GET(request: Request, { params }: { params: { id: string } }): Promise<IResponse<IProduct>> {
     const token = request.headers.get('authorization')?.replace('Bearer ', '');
@@ -27,7 +26,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
         if (!response.ok) {
             const errorData: { message?: string } = await response.json();
-            return NextResponse.json({ status: response.status, error: errorData.message || 'Failed to fetch product' });
+            return NextResponse.json({ status: response.status, error: errorData.message ?? 'Failed to fetch product' });
         }
 
         const data: IProduct = await response.json();

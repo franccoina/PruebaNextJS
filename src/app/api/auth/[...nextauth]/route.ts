@@ -1,9 +1,7 @@
-import NextAuth, { User } from "next-auth";
+import NextAuth, { User, NextAuthOptions, Session } from "next-auth";
 import { AdapterUser } from "next-auth/adapters";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
-import { Session } from "next-auth";
-import { NextAuthOptions } from "next-auth";
 
 interface Credentials {
   username: string;
@@ -11,30 +9,30 @@ interface Credentials {
 }
 
 interface IUser {
-  _id:      string;
-  email:    string;
+  _id: string;
+  email: string;
   username: string;
-  name:     string;
-  phone:    string;
-  __v:      number;
+  name: string;
+  phone: string;
+  __v: number;
 }
 
 interface UserAuthenticate extends User {
   access_token?: string;
-  user:         IUser; 
+  user: IUser; 
 }
 
 interface SessionAuthenticate extends Session {
   access_token: string;
-  user:         IUser;   
+  user: IUser;   
 }
 
 interface JWTAuthenticate extends JWT {
   access_token: string;
-  user:         IUser;
+  user: IUser;
 }
 
-const handler:NextAuthOptions = NextAuth({
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -76,13 +74,13 @@ const handler:NextAuthOptions = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }: { token: JWTAuthenticate, user: UserAuthenticate | AdapterUser}) {
+    async jwt({ token, user }: { token: JWTAuthenticate, user: UserAuthenticate | AdapterUser }) {
       if (user) {
         token.accessToken = (user as UserAuthenticate).access_token;
       }
       return token;
     },
-    async session({ session, token }:{session: SessionAuthenticate, token: JWT}) {
+    async session({ session, token }: { session: SessionAuthenticate, token: JWT }) {
       session.access_token = token.accessToken as string;  
       return session;
     },
@@ -90,6 +88,8 @@ const handler:NextAuthOptions = NextAuth({
   pages: {
     signIn: "/login",
   },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
