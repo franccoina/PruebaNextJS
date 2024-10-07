@@ -2,7 +2,7 @@
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Card from "@/components/card/Card";
-import { ICardProps, IProduct } from "@/types/productInterface";
+import { IProduct } from "@/types/productInterface";
 import styled from "styled-components";
 import { Session } from "next-auth";
 

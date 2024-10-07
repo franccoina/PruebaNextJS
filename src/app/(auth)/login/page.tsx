@@ -6,36 +6,43 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import Input from "@/components/UI/Input/Input";
 import Label from "@/components/UI/Label/Label";
-import Button from "@/components/UI/Button/Button"
+import Button from "@/components/UI/Button/Button";
 
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const Card = styled.div`
   max-width: 400px;
-  margin: 0 auto;
+  width: 100%;
   padding: 2rem;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  border: rgba(0, 0, 0, 0.1);
+  background-color: #fff; 
 `;
 
 const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  align-self: start;
+  text-align: center;
+  color: #333; 
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: stretch;
 
-  & button{
-    align-self: end;
+  & button {
+    margin-top: 1rem;
   }
 `;
 
 const ErrorList = styled.ul`
-  margin: 0;
+  margin: 1rem 0 0; 
   padding: 1rem;
   background-color: #f8d7da;
   color: #721c24;
@@ -76,36 +83,38 @@ const LoginPage = () => {
 
   return (
     <Container>
-      <Title>Login</Title>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor="username" text="Username" />
-        <Input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
+      <Card>
+        <Title>Iniciar Sesión</Title>
+        <Form onSubmit={handleSubmit}>
+          <Label htmlFor="username" text="Usuario" />
+          <Input
+            type="text"
+            placeholder="Nombre de usuario"
+            name="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
 
-        <Label htmlFor="password" text="Password" />
-        <Input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
+          <Label htmlFor="password" text="Contraseña" />
+          <Input
+            type="password"
+            placeholder="Contraseña"
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
 
-        <Button type="submit" label="ENTER" />
-      </Form>
+          <Button type="submit" label="ENTRAR" />
+        </Form>
 
-      {errors.length > 0 && (
-        <ErrorList>
-          {errors.map((error) => (
-            <ErrorItem key={error}>{error}</ErrorItem>
-          ))}
-        </ErrorList>
-      )}
+        {errors.length > 0 && (
+          <ErrorList>
+            {errors.map((error) => (
+              <ErrorItem key={error}>{error}</ErrorItem>
+            ))}
+          </ErrorList>
+        )}
+      </Card>
     </Container>
   );
 };

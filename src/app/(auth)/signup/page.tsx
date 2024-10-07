@@ -12,43 +12,50 @@ import Button from "../../../components/UI/Button/Button";
 import Label from "@/components/UI/Label/Label";
 
 const Container = styled.div`
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const Card = styled.div`
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 8px;
+  border: rgba(0, 0, 0, 0.1);
+  background-color: #fff; 
 `;
 
 const Title = styled.h1`
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    align-self: start;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #333; 
 `;
 
 const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
-    & button{
-        align-self: end;
-    }
+  & button {
+    margin-top: 1rem;
+  }
 `;
 
 const ErrorList = styled.ul`
-    margin: 0;
-    padding: 1rem;
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    border-radius: 4px;
-    list-style: none;
+  margin: 1rem 0 0; 
+  padding: 1rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  list-style: none;
 `;
 
 const ErrorItem = styled.li`
-    margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 `;
 
 const SignUpPage = () => {
@@ -93,6 +100,7 @@ const SignUpPage = () => {
 
     return (
         <Container>
+      <Card>
             <Title>Sign Up</Title>
             <Form onSubmit={handleSubmit}>
             <Label htmlFor="name" text="Full Name" />
@@ -156,6 +164,7 @@ const SignUpPage = () => {
                     ))}
                 </ErrorList>
             )}
+            </Card>
         </Container>
     );
 };

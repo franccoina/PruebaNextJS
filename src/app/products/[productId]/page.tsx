@@ -1,5 +1,5 @@
 "use client";
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { IProduct, IResponse } from '../../../types/productInterface';
 import { useSession } from 'next-auth/react';
@@ -55,68 +55,66 @@ const BackLink = styled.a`
 `;
 
 export default function ProductsDetails({ params }: { params: { productId: string } }) {
-  const { productId } = params;
-  const { data: session } = useSession();
-  const [product, setProduct] = useState<IProduct | null>(null);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+    const { productId } = params;
+    const { data: session } = useSession();
+    const [product, setProduct] = useState<IProduct | null>(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (parseInt(productId) > 1000 || parseInt(productId) < 1) {
-      // Puedes manejar el error según tu lógica
-      console.error("Error: productId fuera de rango");
-      return;
+    useEffect(() => {
+        if (parseInt(productId) > 1000 || parseInt(productId) < 1) {
+            console.error("Error: productId fuera de rango");
+            return;
+        }
+
+        const fetchProductDetails = async () => {
+            if (!session?.access_token) return;
+
+            const token = session.access_token;
+
+            try {
+                const response = await fetch(`/api/products/${productId}`, {
+                    method: 'GET',
+                    headers: {
+                        "Content-Type": 'application/json',
+                        "Authorization": `Bearer ${token}`,
+                    },
+                });
+
+                const data: IResponse<IProduct> = await response.json();
+
+                if (response.ok && data.data) {
+                    setProduct(data.data);
+                } else {
+                    console.error('Error:', data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching product details:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProductDetails();
+    }, [productId, session]);
+
+    if (loading) {
+        return <p>Cargando detalles del producto...</p>;
     }
 
-    const fetchProductDetails = async () => {
-      if (!session?.access_token) return;
+    if (!product) {
+        return <p>No se encontraron los detalles del producto.</p>;
+    }
 
-      const token = session.access_token;
-
-      try {
-        const response = await fetch(`/api/products/${productId}`, {
-          method: 'GET',
-          headers: {
-            "Content-Type": 'application/json',
-            "Authorization": `Bearer ${token}`,
-          },
-        });
-
-        const data: IResponse<IProduct> = await response.json();
-
-        if (response.ok && data.data) {
-          setProduct(data.data);
-        } else {
-          console.error('Error:', data.error);
-        }
-      } catch (error) {
-        console.error('Error fetching product details:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProductDetails();
-  }, [productId, session]);
-
-  if (loading) {
-    return <p>Cargando detalles del producto...</p>;
-  }
-
-  if (!product) {
-    return <p>No se encontraron los detalles del producto.</p>;
-  }
-
-  return (
-    <Container>
-      <BackLink href="/products">← Volver a Productos</BackLink>
-      <ProductTitle>{product.title}</ProductTitle>
-      <ProductImage src={product.image} alt={product.title} />
-      <ProductInfo><span>Descripción:</span> {product.description}</ProductInfo>
-      <ProductInfo><span>Precio:</span> ${product.price}</ProductInfo>
-      <ProductInfo><span>Categoria:</span> {product.category}</ProductInfo>
-      <ProductInfo><span>Calificación:</span> {product.rating.rate}</ProductInfo>
-      <ProductInfo><span>Conteo de calificaciones:</span> {product.rating.count}</ProductInfo>
-    </Container>
-  );
+    return (
+        <Container>
+            <BackLink href="/products">← Volver a Productos</BackLink>
+            <ProductTitle>{product.title}</ProductTitle>
+            <ProductImage src={product.image} alt={product.title} />
+            <ProductInfo><span>Descripción:</span> {product.description}</ProductInfo>
+            <ProductInfo><span>Precio:</span> ${product.price}</ProductInfo>
+            <ProductInfo><span>Categoria:</span> {product.category}</ProductInfo>
+            <ProductInfo><span>Calificación:</span> {product.rating.rate}</ProductInfo>
+            <ProductInfo><span>Conteo de calificaciones:</span> {product.rating.count}</ProductInfo>
+        </Container>
+    );
 }
