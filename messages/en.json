@@ -1,16 +1,34 @@
 {
     "LoginView": {
-        "title": "Login",
-        "email": "Email",
+        "title": "Log In",
+        "username": "Username",
         "password": "Password",
-        "buttonLogin": "Login"
+        "buttonLogin": "ENTER"
     },
-    "Navbar": {
-        "home": "Home",
-        "about": "About",
-        "contact": "Contact",
-        "logout": "Logout",
-        "login": "Login",
-        "register": "Register"
+    "SignUpView": {
+        "title": "Sign Up",
+        "username": "Full Name",
+        "name": "Username",
+        "password": "Password",
+        "email": "Email",
+        "phone": "Phone",
+        "buttonSignUp": "SEND"
+    },
+    "HomeView": {
+        "title": "Home"
+    },
+    "Sidebar": {
+        "products": "Products",
+        "profile": "Profile",
+        "products": "Products"
+    },
+    "Header": {
+        "logotype": "iProfile",
+        "lang": "EN",
+        "logout": "Logout"
+    },
+    "Switchbar":{
+        "login": "Log In",
+        "signup": "Sign Up"
     }
 }
