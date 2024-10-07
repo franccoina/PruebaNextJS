@@ -1,23 +1,35 @@
 import React from 'react';
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import styled from 'styled-components';
 
-interface ISelectProps {
-    label: string;
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+const Dropdown = styled.select`
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: white;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  
+  &:hover {
+    border-color: #aaa;
+  }
+`;
+
+export default function SelectLanguage(): React.ReactElement {
+    const router = useRouter();
+
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        Cookies.set("locale", e.target.value);
+        router.refresh();
+    };
+
+    return (
+        <Dropdown onChange={handleChange}>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+        </Dropdown>
+    );
 }
 
-const SelectLanguage: React.FC<ISelectProps> = ({ label, onChange }) => {
-    return (
-        <div>
-            <label htmlFor="language-select">{label}</label><br />
-            <select id="language-select" onChange={onChange}>
-                <option disabled value="">
-                    --Choose an option--
-                </option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-        </div>
-    );
-};
-
-export default SelectLanguage;

@@ -3,13 +3,13 @@ import { Providers } from './Providers';
 import SessionAuthProvider from "@/context/SessionAuthProvider";
 import StyledComponentsRegistry from "./StyledComponentsRegistry";
 import { NextIntlClientProvider } from 'next-intl';
-import {  Inter} from "next/font/google"
+import { Quicksand} from "next/font/google"
 import { getLocale,getMessages } from "next-intl/server";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({ subsets: ["latin"] , weight: ["300", "400", "500", "600", "700"]});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={inter.className}
+        className={quicksand.className}
       > 
         <StyledComponentsRegistry>
         <NextIntlClientProvider messages={messages}>
