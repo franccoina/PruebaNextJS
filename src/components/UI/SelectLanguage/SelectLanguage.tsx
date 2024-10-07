@@ -9,8 +9,11 @@ const Dropdown = styled.select`
   border: 1px solid #ddd;
   background-color: white;
   font-size: 16px;
-  margin: 10px;
   cursor: pointer;
+
+  :focus, :active{
+    outline: none;
+  }
   
   &:hover {
     border-color: #aaa;

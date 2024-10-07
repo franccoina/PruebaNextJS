@@ -15,23 +15,19 @@ const SwitchbarContainer = styled.div`
     position: relative;
     width: 100%;
     top: 0;
-    background-color: #f5f5f5;
+    background-color: #fff;
+    border-bottom: 1px solid gray;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 50px;
-    gap: 50px;
-
-    @media (max-width: 768px) {
-        padding: 0 20px;
-    }
+    padding: 20px;
 `;
 
 const LinksContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
 
     > * {
         opacity: 0.5;

@@ -1,6 +1,7 @@
 import { ICardProps } from '@/types/productInterface';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 import Button from '../UI/Button/Button';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
@@ -9,24 +10,29 @@ const CardContainer = styled.div`
   width: 300px; 
   display: flex;
   flex-direction: row; 
-    width: 100%; 
+  width: 100%; 
   margin: 10px;
   background-color: #f0f8ff;
   transition: transform 0.2s;
 
-  :nth-child(2){
-    padding: 15px;
-  }
-
   &:hover {
     transform: scale(1.05); 
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+
+    & img {
+      width: 100%;
+      height: auto;
+    }
   }
 `;
 
 const ProductImage = styled.img`
   width: 300px;
   height: 300px;
-  border-radius: 5px;
+  border-radius: 10px;
   object-fit: cover;
   margin-right: 15px;
 `;
@@ -77,12 +83,18 @@ export const FavoriteIcon = styled.div`
 `;
 
 const Card: React.FC<ICardProps> = ({ product }) => {
+  const router = useRouter();
+
   const handleAddToCart = () => {
-    console.log("add to cart");
+    console.log("add to Cart")
   };
 
-  const handleAddToLike = () => {
-    console.log("add to Likes");
+  const handleFavorite = () => {
+    console.log("add to Favorites")
+  };
+
+  const handleViewDetails = () => {
+    router.push(`/products/${product.id}`);
   };
 
   return (
@@ -92,8 +104,9 @@ const Card: React.FC<ICardProps> = ({ product }) => {
         <ProductTitle>{product.title}</ProductTitle>
         <ProductPrice>${product.price}</ProductPrice>
         <ButtonContainer>
-          <Button onClick={handleAddToCart} label="Agregar" />
-          <FavoriteIcon onClick={handleAddToLike}>
+          <Button onClick={handleAddToCart} label="ADD" />
+          <Button onClick={handleViewDetails} label="DETAILS"/>
+          <FavoriteIcon onClick={handleFavorite}>
             {<AiFillStar />}
           </FavoriteIcon>
         </ButtonContainer>

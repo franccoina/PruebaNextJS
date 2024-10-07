@@ -2,6 +2,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import StyledLink from "../UI/Link/Link";
+import SelectLanguage from "../UI/SelectLanguage/SelectLanguage";
 
 const navUserLinks = [
     { name: "Products", href: "/products" },
@@ -19,9 +20,11 @@ const SidebarContainer = styled.div`
     background-color: white;
     border: 1px solid grey;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     justify-content: center;
     padding-top: 64px;
+    padding-bottom: 64px;
     gap: 50px;
     padding-left: 50px;
 `;
@@ -56,6 +59,7 @@ export const Sidebar: React.FC = () => {
                     )}
             )}
             </LinksContainer>
+            <SelectLanguage />
         </SidebarContainer>
     );
 };
