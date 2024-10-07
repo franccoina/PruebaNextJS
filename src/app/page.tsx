@@ -1,4 +1,5 @@
 "use client"
+import styled from "styled-components";
 import { useTranslations } from "next-intl";
 import StyledLink from "@/components/UI/Link/Link";
 
