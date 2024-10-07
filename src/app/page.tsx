@@ -3,10 +3,10 @@ import { useTranslations } from "next-intl";
 import StyledLink from "@/components/UI/Link/Link";
 
 const HomePage = () => {
-  const traduction = useTranslations("HomeView");
+  const translation = useTranslations("HomeView");
   return (
     <div>
-      <h1>{traduction("title")}</h1>
+      <h1>{translation("title")}</h1>
       <div>
         <StyledLink href="/profile" label="Profile"></StyledLink><br />
         <StyledLink href="/products" label="Products"></StyledLink><br />

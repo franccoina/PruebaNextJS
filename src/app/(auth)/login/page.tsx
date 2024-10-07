@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import Input from "@/components/UI/Input/Input";
 import Label from "@/components/UI/Label/Label";
 import Button from "@/components/UI/Button/Button";
+import { useTranslations } from "next-intl";
 
 const Container = styled.div`
   display: flex;
@@ -60,6 +61,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
+  const translation = useTranslations('LoginView');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -84,9 +86,9 @@ const LoginPage = () => {
   return (
     <Container>
       <Card>
-        <Title>Iniciar Sesión</Title>
+        <Title>{translation('title')}</Title>
         <Form onSubmit={handleSubmit}>
-          <Label htmlFor="username" text="Usuario" />
+          <Label htmlFor="username" text={translation('username')} />
           <Input
             type="text"
             placeholder="Nombre de usuario"
@@ -95,7 +97,7 @@ const LoginPage = () => {
             onChange={(event) => setUsername(event.target.value)}
           />
 
-          <Label htmlFor="password" text="Contraseña" />
+          <Label htmlFor="password" text={translation('password')} />
           <Input
             type="password"
             placeholder="Contraseña"
@@ -104,7 +106,7 @@ const LoginPage = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          <Button type="submit" label="ENTRAR" />
+          <Button type="submit" label={translation('buttonLogin')} />
         </Form>
 
         {errors.length > 0 && (

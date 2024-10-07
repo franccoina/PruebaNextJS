@@ -3,6 +3,7 @@ import { signIn, SignInResponse } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styled from "styled-components";
+import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
 import { createUser } from "../../api/users/route"
 import { IUserRegistered, IResponseCreateUser } from "@/types/userInterface"
@@ -65,6 +66,7 @@ const SignUpPage = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [phone, setPhone] = useState<string>("");
+    const translation = useTranslations('SignUpView');
 
     const router: AppRouterInstance = useRouter();
 
@@ -101,9 +103,9 @@ const SignUpPage = () => {
     return (
         <Container>
       <Card>
-            <Title>Sign Up</Title>
+            <Title>{translation('title')}</Title>
             <Form onSubmit={handleSubmit}>
-            <Label htmlFor="name" text="Full Name" />
+            <Label htmlFor="name" text={translation('name')} />
                 <Input
                     type="text"
                     placeholder="Full Name"
@@ -114,7 +116,7 @@ const SignUpPage = () => {
                     }
                 />
 
-                <Label htmlFor="username" text="Username" />
+                <Label htmlFor="username" text={translation('username')}  />
                 <Input
                     type="text"
                     placeholder="Username"
@@ -125,7 +127,7 @@ const SignUpPage = () => {
                     }
                 />
 
-                <Label htmlFor="email" text="Email" />
+                <Label htmlFor="email" text={translation('email')}  />
                 <Input
                     type="email"
                     placeholder="Email"
@@ -136,7 +138,7 @@ const SignUpPage = () => {
                     }
                 />
 
-                <Label htmlFor="password" text="Password" />
+                <Label htmlFor="password" text={translation('password')}  />
                 <Input
                     type="password"
                     placeholder="Password"
@@ -145,7 +147,7 @@ const SignUpPage = () => {
                     onChange={(event) => setPassword(event.target.value)}
                 />
 
-                <Label htmlFor="phone" text="Phone" />
+                <Label htmlFor="phone" text={translation('phone')}  />
                 <Input
                     type="text"
                     placeholder="Phone"
@@ -154,7 +156,7 @@ const SignUpPage = () => {
                     onChange={(event) => setPhone(event.target.value)}
                 />
 
-                <Button type="submit" label="SEND"></Button>
+                <Button type="submit" label={translation('buttonSignUp')} ></Button>
             </Form>
 
             {errors.length > 0 && (

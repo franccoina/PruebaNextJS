@@ -7,7 +7,8 @@
     },
     "SignUpView": {
         "title": "Sign Up",
-        "username": "Username",
+        "username": "Full Name",
+        "name": "Username",
         "password": "Password",
         "email": "Email",
         "phone": "Phone",
