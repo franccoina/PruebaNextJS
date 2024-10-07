@@ -41,7 +41,7 @@ const ProductTitle = styled.p`
   font-size: 18px;
   font-weight: bold;
   margin: 5px 0;
-  color: #333; 
+  color: #115d57; 
 `;
 
 const ProductPrice = styled.p`
