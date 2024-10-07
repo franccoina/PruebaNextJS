@@ -1,7 +1,7 @@
 "use client"
-
 import styled from "styled-components";
 import React from "react";
+import SelectLanguage from "../UI/SelectLanguage/SelectLanguage";
 import StyledLink from "../UI/Link/Link";
 
 const navAuthLinks = [
@@ -51,6 +51,7 @@ export const Switchbar: React.FC = () => {
                         <StyledLink key={link.name} href={link.href} label={link.name} />
                     )}
             )}
+            <SelectLanguage />
             </LinksContainer>
         </SwitchbarContainer>
     );
