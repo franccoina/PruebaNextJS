@@ -5,8 +5,11 @@ Dive into this advanced product management solution crafted with Next.js, TypeSc
 ## Core Technologies
 
  ★ Code: **Next.js, TypeScript, NextAuth, Redux Toolkit**
+ 
  ★ Styling: **Styled-components, CSS**
+ 
  ★ Alerts and errors: **React Toastify**
+ 
  ★ Internationalization: **i18n**
 
 ## What will you find here?
