@@ -24,8 +24,7 @@ This is a product management project developed with Next.js, TypeScript, and Nex
 1. Clone the repository:
 
    ```bash
-   git clone <REPOSITORY_URL>
-   cd <REPOSITORY_NAME>
+   git clone https://github.com/franccoina/PruebaNextJS
 
 2. Install the dependencies:
 
